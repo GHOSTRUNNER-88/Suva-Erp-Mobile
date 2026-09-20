@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "appVersionSource": "local"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://erp.suvacorp.com.np",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "931668619666-9dcvjo40fb4hicnmoh5dm7qtum56cusm.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "931668619666-d5di27mats0vemrqj1ijlaaa1onm6jlf.apps.googleusercontent.com"
+      }
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://erp.suvacorp.com.np",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "931668619666-9dcvjo40fb4hicnmoh5dm7qtum56cusm.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "931668619666-d5di27mats0vemrqj1ijlaaa1onm6jlf.apps.googleusercontent.com"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

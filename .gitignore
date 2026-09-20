@@ -1,41 +1,75 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
+# Dependencies
 node_modules/
+package-lock.json.backup
 
-# Expo
+# Expo & Metro
 .expo/
+.expo-shared/
 dist/
 web-build/
 expo-env.d.ts
+.metro-health-check*
 
-# Native
+# Native generated builds (Expo Prebuild / Bare)
+/ios/
+/android/
 .kotlin/
 *.orig.*
+
+# Android / Gradle
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+
+# Keystores, signing certificates, & credential files (SECURITY)
 *.jks
+*.keystore
 *.p8
 *.p12
 *.key
 *.mobileprovision
+*.pem
+credentials/
+credentials.json
+google-services.json
+GoogleService-Info.plist
 
-# Metro
-.metro-health-check*
+# Environment configuration & secrets
+.env
+.env*.local
+.env.development
+.env.production
+.env.staging
+.env.test
+!.env.example
 
-# debug
+# Logs & debug outputs
+*.log
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+firebase-debug.log*
+prebuild.log
 
-# macOS
+# Operating System & Editors
 .DS_Store
-*.pem
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# local env files
-.env*.local
-
-# typescript
+# TypeScript & Test coverage
 *.tsbuildinfo
-
-# generated native folders
-/ios
-/android
+coverage/

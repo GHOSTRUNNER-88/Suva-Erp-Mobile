@@ -1,0 +1,11 @@
+SUVA ERP - v1.0.0
+
+First release. Synced live with your SUVA ERP desktop account.
+
+- Sales, purchases, orders & quotations
+- Parties, inventory & barcode scanning
+- Payments, cash, cheques & bank accounts
+- Payroll & attendance
+- Expenses & reports
+- Nepali + English, BS + AD dates
+- Face ID / fingerprint sign-in

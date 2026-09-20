@@ -1,0 +1,401 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Mukta:wght@400;500;600;700&display=swap">
+<style>
+/* SUVA ERP — Google Play asset generator.
+   Each .shot is exactly 1080x1920; .feature is exactly 1024x500.
+   Screenshot each by its id with Playwright, no scaling. */
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#555;font-family:Poppins,"Mukta",system-ui,sans-serif;display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
+
+:root{
+  --primary:#985FFD; --primaryDark:#7A3EE6; --primaryLight:#F3EEFF;
+  --gold:#F7B500; --success:#32D484; --warning:#FDAF22; --danger:#FF6757;
+  --navy:#011A42; --muted:#5D6576; --border:#E2E8EE; --canvas:#F8F9FD;
+  --char:#26232E;
+}
+
+/* ───── feature graphic 1024x500 ───── */
+.feature{
+  width:1024px;height:500px;background:var(--char);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;padding:0 80px;gap:52px;
+}
+.feature .rules{position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 47px,rgba(255,255,255,.045) 47px 48px)}
+.feature .glow{position:absolute;width:620px;height:620px;right:-190px;top:-160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(152,95,253,.34) 0%,rgba(152,95,253,0) 68%)}
+.feature .mark{width:156px;height:156px;flex:0 0 auto;position:relative;z-index:2;border-radius:34px}
+.feature .txt{position:relative;z-index:2}
+.feature h1{font-size:64px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.018em}
+.feature h1 em{font-style:normal;color:var(--primary)}
+.feature p{font-size:24px;color:rgba(255,255,255,.72);margin-top:14px;font-weight:300;line-height:1.35}
+.feature .chips{display:flex;gap:10px;margin-top:26px}
+.feature .chips span{
+  font-size:15px;font-weight:500;color:#fff;border:1px solid rgba(255,255,255,.26);
+  border-radius:3px;padding:6px 14px;letter-spacing:.01em;
+}
+
+#s4 .cap h2{line-height:1.3;font-size:70px}
+/* ───── phone screenshots 1080x1920 ───── */
+.shot{width:1080px;height:1920px;position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--primaryLight)}
+.shot.dark{background:var(--char)}
+.cap{padding:96px 84px 0;flex:0 0 auto}
+.cap h2{font-size:74px;line-height:1.04;padding-top:.12em;font-weight:700;color:var(--navy);letter-spacing:-.022em}
+.shot.dark .cap h2{color:#fff}
+.cap h2 em{font-style:normal;color:var(--primaryDark)}
+.shot.dark .cap h2 em{color:var(--primary)}
+.cap p{font-size:32px;color:var(--muted);margin-top:22px;font-weight:300;line-height:1.4;max-width:32ch}
+.shot.dark .cap p{color:rgba(255,255,255,.66)}
+
+.stage{flex:1;display:flex;justify-content:center;align-items:flex-end;padding:72px 84px 0;min-height:0}
+.dev{
+  width:100%;max-width:820px;background:#fff;border-radius:44px 44px 0 0;
+  box-shadow:0 -6px 0 rgba(0,0,0,.03),0 42px 90px -30px rgba(1,26,66,.42);
+  overflow:hidden;display:flex;flex-direction:column;height:100%;
+}
+.shot.dark .dev{box-shadow:0 42px 90px -30px rgba(0,0,0,.7)}
+
+/* device chrome */
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:20px 32px 10px;font-size:20px;font-weight:500;color:var(--navy)}
+.sbar .r{display:flex;gap:9px;align-items:center;font-size:17px;color:var(--muted)}
+.abar{display:flex;align-items:center;gap:16px;padding:14px 32px 20px;border-bottom:1px solid var(--border)}
+.abar .lg{width:40px;height:40px;border-radius:10px;background:var(--char);display:grid;place-items:center;flex:0 0 auto}
+.abar .ti{font-size:25px;font-weight:600;color:var(--navy);margin-right:auto}
+.abar .pill{font-size:17px;font-weight:600;color:var(--primaryDark);background:var(--primaryLight);border-radius:100px;padding:6px 16px}
+.abar .ic{width:38px;height:38px;border-radius:10px;background:var(--canvas);display:grid;place-items:center;font-size:19px;color:var(--muted)}
+
+/* generic device blocks */
+.kpi{margin:26px 32px 0;background:var(--char);border-radius:22px;padding:28px 30px;color:#fff;position:relative;overflow:hidden}
+.kpi .glow2{position:absolute;width:300px;height:300px;right:-110px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(152,95,253,.45),transparent 70%)}
+.kpi .k{font-size:19px;color:rgba(255,255,255,.6);font-weight:400;position:relative}
+.kpi .v{font-size:54px;font-weight:700;line-height:1.1;margin-top:2px;position:relative;letter-spacing:-.02em}
+.kpi .d{font-size:20px;color:var(--success);font-weight:600;position:relative;margin-top:2px}
+
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:26px 32px 0}
+.qa>div{background:var(--canvas);border:1px solid var(--border);border-radius:18px;padding:16px 8px;text-align:center}
+.qa>div .e{font-size:26px;line-height:1}
+.qa>div .n{font-size:15px;color:var(--navy);font-weight:500;margin-top:7px;line-height:1.2}
+
+.sech{display:flex;justify-content:space-between;align-items:baseline;margin:32px 32px 0}
+.sech .t{font-size:23px;font-weight:600;color:var(--navy)}
+.sech .a{font-size:18px;color:var(--primaryDark);font-weight:600}
+
+.rows{margin:16px 32px 0;display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:18px;padding:19px 0;border-bottom:1px solid var(--border)}
+.row:last-child{border-bottom:0}
+.row .av{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:21px;font-weight:600;flex:0 0 auto}
+.row .mid{flex:1;min-width:0}
+.row .nm{display:block;font-size:22px;font-weight:600;color:var(--navy);line-height:1.25}
+.row .sb{display:block;font-size:17px;color:var(--muted);font-weight:400;margin-top:1px}
+.row .amt{text-align:right;flex:0 0 auto}
+.row .amt .a1{font-size:22px;font-weight:600;color:var(--navy)}
+.row .amt .a2{font-size:16px;font-weight:600;margin-top:2px}
+.g{color:var(--success)} .r{color:var(--danger)} .w{color:var(--warning)} .m{color:var(--muted)}
+.bgP{background:var(--primaryLight);color:var(--primaryDark)}
+.bgG{background:#E6FAF1;color:#1E9E6A}
+.bgW{background:#FEF5E2;color:#B97F06}
+.bgD{background:#FFEEEC;color:#D9483B}
+
+.tabs{margin-top:auto;display:flex;justify-content:space-around;align-items:center;padding:20px 12px 26px;border-top:1px solid var(--border);background:#fff}
+.tabs div{text-align:center;color:#9AA1AE;font-size:15px;font-weight:500}
+.tabs div .e{font-size:25px;display:block;line-height:1.2}
+.tabs div.on{color:var(--primary);font-weight:600}
+.tabs div.fab{width:66px;height:66px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:30px;margin-top:-26px;box-shadow:0 10px 22px -6px rgba(152,95,253,.7)}
+
+/* steps / wizard */
+.steps{display:flex;gap:0;margin:26px 32px 0;align-items:center}
+.steps .s{flex:1;text-align:center}
+.steps .s .c{width:44px;height:44px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:19px;font-weight:600;background:var(--canvas);color:var(--muted);border:1px solid var(--border)}
+.steps .s.on .c{background:var(--primary);color:#fff;border-color:var(--primary)}
+.steps .s.dn .c{background:var(--success);color:#fff;border-color:var(--success)}
+.steps .s .l{font-size:15px;color:var(--muted);margin-top:8px;font-weight:500}
+.steps .s.on .l{color:var(--navy);font-weight:600}
+.steps .bar{height:2px;background:var(--border);flex:0 0 34px;margin-bottom:22px}
+
+.field{margin:22px 32px 0}
+.field .lab{font-size:17px;color:var(--muted);font-weight:500;margin-bottom:8px}
+.field .inp{border:1px solid var(--border);border-radius:14px;padding:19px 20px;font-size:22px;color:var(--navy);font-weight:500;display:flex;justify-content:space-between;align-items:center;background:#fff}
+.field .inp.ok{border-color:var(--success);background:#F4FDF9}
+.field .inp.warn{border-color:var(--warning);background:#FFFBF2}
+.field .inp .tag{font-size:15px;font-weight:600}
+.field .hint{font-size:15px;color:var(--muted);margin-top:7px}
+
+.cta{margin:28px 32px 0;background:var(--primary);color:#fff;border-radius:16px;padding:22px;text-align:center;font-size:23px;font-weight:600;box-shadow:0 12px 26px -10px rgba(152,95,253,.8)}
+.cta2{margin:14px 32px 0;border:1px solid var(--border);color:var(--navy);border-radius:16px;padding:21px;text-align:center;font-size:22px;font-weight:600}
+
+/* calendar */
+.cal{margin:24px 32px 0;border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.cal .ch{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;background:var(--canvas);border-bottom:1px solid var(--border)}
+.cal .ch .mo{font-size:24px;font-weight:600;color:var(--navy)}
+.cal .ch .ar{font-size:22px;color:var(--muted)}
+.cal .cg{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:12px 14px}
+.cal .cg span{height:58px;display:grid;place-items:center;font-size:20px;color:var(--navy);border-radius:12px;font-weight:500}
+.cal .cg span.h{font-size:15px;color:var(--muted);font-weight:600}
+.cal .cg span.sel{background:var(--primary);color:#fff;font-weight:700}
+.cal .cg span.off{color:#C3C8D2}
+.cal .cf{padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:18px;color:var(--muted)}
+.cal .cf b{color:var(--navy);font-weight:600}
+
+/* report list */
+.rep{margin:22px 32px 0;display:flex;flex-direction:column}
+.rep .i{display:flex;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
+.rep .i .ic{width:48px;height:48px;border-radius:14px;background:var(--primaryLight);display:grid;place-items:center;font-size:21px;flex:0 0 auto}
+.rep .i .n{display:block;font-size:22px;font-weight:600;color:var(--navy)}
+.rep .i .s{display:block;font-size:16px;color:var(--muted);margin-top:1px}
+.rep .i .ch{margin-left:auto;color:#C3C8D2;font-size:22px}
+.search{margin:22px 32px 0;background:var(--canvas);border:1px solid var(--border);border-radius:100px;padding:17px 24px;font-size:20px;color:#9AA1AE;display:flex;gap:12px}
+
+/* offline */
+.ob{margin:22px 32px 0;background:#FFF6E8;border:1px solid #F5D9A5;border-radius:16px;padding:18px 22px;display:flex;gap:14px;align-items:center}
+.ob .dt{width:12px;height:12px;border-radius:50%;background:var(--warning);flex:0 0 auto}
+.ob .tx{font-size:19px;color:#8A5B00;font-weight:500;line-height:1.3}
+.prog{margin:26px 32px 0}
+.prog .pl{display:flex;justify-content:space-between;font-size:19px;color:var(--navy);font-weight:600;margin-bottom:10px}
+.prog .pb{height:12px;background:var(--border);border-radius:100px;overflow:hidden}
+.prog .pb i{display:block;height:100%;width:74%;background:var(--primary);border-radius:100px}
+.prog .ps{font-size:16px;color:var(--muted);margin-top:9px}
+
+/* ledger posting strip */
+.post{margin:26px 32px 0;background:var(--canvas);border:1px solid var(--border);border-radius:18px;padding:18px 22px}
+.post .ph{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.post .ph .ok{color:#1E9E6A}
+.post .pr{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:baseline;padding:6px 0;font-size:20px;color:var(--navy)}
+.post .pr .dr{color:var(--danger);font-weight:700;font-size:15px}
+.post .pr .cr{color:#1E9E6A;font-weight:700;font-size:15px}
+.post .pr b{font-weight:600}
+
+/* totals */
+.tot{margin:24px 32px 0;border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.tot .tr{display:flex;justify-content:space-between;padding:15px 24px;font-size:20px;color:var(--muted)}
+.tot .tr b{color:var(--navy);font-weight:600}
+.tot .tr.gr{background:var(--canvas);border-top:1px solid var(--border);font-size:25px;padding:20px 24px}
+.tot .tr.gr span{color:var(--navy);font-weight:600}
+.tot .tr.gr b{font-size:28px}
+.lines{margin:24px 32px 0}
+.lines .lh{display:flex;font-size:15px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.lines .lr{display:flex;padding:17px 0;border-bottom:1px solid var(--border);font-size:20px;color:var(--navy)}
+.lines .c1{flex:1}.lines .c2{width:120px;text-align:right;color:var(--muted);font-size:18px}.lines .c3{width:190px;text-align:right;font-weight:600}
+</style></head><body>
+
+<!-- ══════════ FEATURE GRAPHIC 1024×500 ══════════ -->
+<div class="feature" id="feature">
+  <div class="rules"></div><div class="glow"></div>
+  <img class="mark" src="data:image/png;base64,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" alt="">
+  <div class="txt">
+    <h1>Suva <em>ERP</em></h1>
+    <p>Billing, stock and double-entry accounts.<br>नेपाली र अंग्रेजी · बि.सं. र ई.सं.</p>
+    <div class="chips"><span>Sales &amp; Billing</span><span>Inventory</span><span>Accounts</span><span>Payroll</span><span>Offline</span></div>
+  </div>
+</div>
+
+<!-- ══════════ 1 — HOME ══════════ -->
+<div class="shot dark" id="s1">
+  <div class="cap">
+    <h2>Your whole business,<br><em>in your pocket.</em></h2>
+    <p>Sales, stock, ledgers and payments — live from your Suva account.</p>
+  </div>
+  <div class="stage"><div class="dev">
+    <div class="sbar"><span>9:41</span><span class="r">▮▮▮ ⌁ 100%</span></div>
+    <div class="abar">
+      <span class="lg"><svg width="22" height="22" viewBox="0 0 100 100"><path d="M18 50 L47 33 C41 42 42 51 50 56 C58 61 60 68 55 76 L82 60 L82 26 L55 42 C61 34 60 27 53 23 C46 19 44 13 48 6 L18 24 Z" fill="#985FFD"/></svg></span>
+      <span class="ti">Suvacorp</span>
+      <span class="pill">नेपाली</span>
+      <span class="ic">🔔</span>
+    </div>
+    <div class="kpi"><div class="glow2"></div>
+      <div class="k">Today's sales</div>
+      <div class="v">Rs 184,320</div>
+      <div class="d">▲ 12.4% vs yesterday</div>
+    </div>
+    <div class="qa">
+      <div><div class="e">🧾</div><div class="n">Sale</div></div>
+      <div><div class="e">📥</div><div class="n">Purchase</div></div>
+      <div><div class="e">💵</div><div class="n">Payment</div></div>
+      <div><div class="e">📸</div><div class="n">Scan</div></div>
+    </div>
+    <div class="sech"><span class="t">Recent transactions</span><span class="a">See all</span></div>
+    <div class="rows">
+      <div class="row"><span class="av bgP">HT</span><span class="mid"><span class="nm">Himal Traders</span><span class="sb">INV-2083-0417 · 2083-05-31</span></span><span class="amt"><div class="a1">222,190.50</div><div class="a2 w">Due</div></span></div>
+      <div class="row"><span class="av bgG">PH</span><span class="mid"><span class="nm">Pashupati Hardware</span><span class="sb">INV-2083-0416 · 2083-05-30</span></span><span class="amt"><div class="a1">84,240.00</div><div class="a2 g">Paid</div></span></div>
+      <div class="row"><span class="av bgD">EB</span><span class="mid"><span class="nm">Everest Builders</span><span class="sb">INV-2083-0415 · 2083-05-28</span></span><span class="amt"><div class="a1">1,127,600.00</div><div class="a2 r">Overdue</div></span></div>
+      <div class="row"><span class="av bgW">AS</span><span class="mid"><span class="nm">Annapurna Suppliers</span><span class="sb">PAY-2083-0233 · 2083-05-27</span></span><span class="amt"><div class="a1">46,890.50</div><div class="a2 g">Received</div></span></div>
+      <div class="row"><span class="av bgP">GC</span><span class="mid"><span class="nm">Gandaki Cement Udyog</span><span class="sb">QTN-2083-0088 · 2083-05-25</span></span><span class="amt"><div class="a1">612,340.00</div><div class="a2 m">Draft</div></span></div>
+      <div class="row"><span class="av bgD">SG</span><span class="mid"><span class="nm">Shree Ganesh Suppliers</span><span class="sb">PB-2083-1184 · 2083-05-24</span></span><span class="amt"><div class="a1">87,410.00</div><div class="a2 r">Payable</div></span></div>
+      <div class="row"><span class="av bgG">CS</span><span class="mid"><span class="nm">Cash sale</span><span class="sb">INV-2083-0413 · 2083-05-24</span></span><span class="amt"><div class="a1">12,450.00</div><div class="a2 g">Paid</div></span></div>
+    </div>
+    <div class="tabs">
+      <div class="on"><span class="e">🏠</span>Home</div>
+      <div><span class="e">📊</span>Dashboard</div>
+      <div class="fab">＋</div>
+      <div><span class="e">📦</span>Items</div>
+      <div><span class="e">☰</span>Menu</div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ══════════ 2 — INVOICE ══════════ -->
+<div class="shot" id="s2">
+  <div class="cap">
+    <h2>Invoices that <em>post themselves.</em></h2>
+    <p>Every bill lands in the ledger. Debits always equal credits.</p>
+  </div>
+  <div class="stage"><div class="dev">
+    <div class="sbar"><span>9:41</span><span class="r">▮▮▮ ⌁ 100%</span></div>
+    <div class="abar"><span class="ic">←</span><span class="ti">Invoice</span><span class="ic">⇪</span><span class="ic">⋮</span></div>
+    <div style="margin:24px 32px 0;display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div style="font-size:27px;font-weight:600;color:var(--navy)">Himal Traders Pvt. Ltd.</div>
+      <div style="font-size:18px;color:var(--muted);margin-top:3px">PAN 301234567</div></div>
+      <div style="font-size:16px;font-weight:600;color:#1E9E6A;border:1px solid #1E9E6A;border-radius:6px;padding:5px 12px">POSTED</div>
+    </div>
+    <div style="margin:18px 32px 0;display:flex;gap:40px">
+      <div><div style="font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Invoice no.</div><div style="font-size:21px;font-weight:600;color:var(--navy)">INV-2083-0417</div></div>
+      <div><div style="font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Date</div><div style="font-size:21px;font-weight:600;color:var(--navy)">2083-05-31 <span style="color:var(--muted);font-weight:400">· 2026-09-16</span></div></div>
+    </div>
+    <div class="lines">
+      <div class="lh"><span class="c1">Item</span><span class="c2">Qty</span><span class="c3">Amount</span></div>
+      <div class="lr"><span class="c1">OPC Cement 50kg</span><span class="c2">120</span><span class="c3">126,000.00</span></div>
+      <div class="lr"><span class="c1">TMT Rod 12mm</span><span class="c2">850</span><span class="c3">100,725.00</span></div>
+    </div>
+    <div class="tot">
+      <div class="tr"><span>Subtotal</span><b>226,725.00</b></div>
+      <div class="tr"><span>Discount 2%</span><b>−4,534.50</b></div>
+      <div class="tr gr"><span>Total</span><b>Rs 222,190.50</b></div>
+    </div>
+    <div class="post">
+      <div class="ph"><span>Ledger posting</span><span class="ok">Balanced ✓</span></div>
+      <div class="pr"><span class="dr">Dr</span><span>Accounts Receivable</span><b>222,190.50</b></div>
+      <div class="pr"><span class="cr">Cr</span><span>Sales Revenue</span><b>222,190.50</b></div>
+    </div>
+    <div class="cta">Share PDF on WhatsApp</div>
+    <div class="cta2">Record payment</div>
+    <div style="margin:16px 32px 0;font-size:17px;color:var(--muted);text-align:center">Cancelling writes a reversing entry — it never deletes the original.</div>
+    <div class="tabs" style="margin-top:auto">
+      <div><span class="e">🏠</span>Home</div><div><span class="e">📊</span>Dashboard</div>
+      <div class="fab">＋</div><div><span class="e">📦</span>Items</div><div><span class="e">☰</span>Menu</div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ══════════ 3 — SCAN ══════════ -->
+<div class="shot" id="s3">
+  <div class="cap">
+    <h2>Photograph a bill.<br><em>Get a filled form.</em></h2>
+    <p>Eight document types. It flags whatever it isn't sure about.</p>
+  </div>
+  <div class="stage"><div class="dev">
+    <div class="sbar"><span>9:41</span><span class="r">▮▮▮ ⌁ 100%</span></div>
+    <div class="abar"><span class="ic">←</span><span class="ti">Scan document</span><span class="pill">Step 3 of 4</span></div>
+    <div class="steps">
+      <div class="s dn"><div class="c">✓</div><div class="l">Type</div></div><div class="bar"></div>
+      <div class="s dn"><div class="c">✓</div><div class="l">Capture</div></div><div class="bar"></div>
+      <div class="s on"><div class="c">3</div><div class="l">Extract</div></div><div class="bar"></div>
+      <div class="s"><div class="c">4</div><div class="l">Review</div></div>
+    </div>
+    <div style="margin:28px 32px 0;background:var(--canvas);border:1px solid var(--border);border-radius:18px;padding:20px 22px;display:flex;gap:16px;align-items:center">
+      <span style="font-size:30px">📄</span>
+      <div><div style="font-size:21px;font-weight:600;color:var(--navy)">Purchase bill</div>
+      <div style="font-size:17px;color:var(--muted)">Captured 2083-05-31 · 1.4 MB</div></div>
+    </div>
+    <div class="field"><div class="lab">Supplier</div><div class="inp ok">Shree Ganesh Suppliers<span class="tag g">Matched</span></div></div>
+    <div class="field"><div class="lab">Bill number</div><div class="inp ok">PB/2083/1184<span class="tag g">Read</span></div></div>
+    <div class="field"><div class="lab">Bill date</div><div class="inp ok">2083-05-29 · 2026-09-14<span class="tag g">Read</span></div></div>
+    <div class="field"><div class="lab">Total amount</div><div class="inp warn">Rs 87,410.00<span class="tag w">Check</span></div>
+      <div class="hint">Low confidence on this figure — confirm against the bill.</div></div>
+    <div class="field"><div class="lab">Line items</div><div class="inp">4 items · 2 matched to your catalogue<span class="tag m">Review</span></div></div>
+    <div class="cta">Continue to review</div>
+    <div style="margin:16px 32px 34px;font-size:17px;color:var(--muted);text-align:center">Nothing is saved until you confirm it.</div>
+  </div></div>
+</div>
+
+<!-- ══════════ 4 — NEPALI + BS ══════════ -->
+<div class="shot dark" id="s4">
+  <div class="cap">
+    <h2>पूरै नेपालीमा,<br><em>विक्रम सम्बत्मा।</em></h2>
+    <p>Real Nepali on every screen — and Devanagari numerals too.</p>
+  </div>
+  <div class="stage"><div class="dev">
+    <div class="sbar"><span>९:४१</span><span class="r">▮▮▮ ⌁ १००%</span></div>
+    <div class="abar"><span class="ic">←</span><span class="ti" style="font-family:Mukta,sans-serif">नयाँ बीजक</span><span class="pill">English</span></div>
+    <div class="field"><div class="lab" style="font-family:Mukta">ग्राहक</div><div class="inp" style="font-family:Mukta">हिमाल ट्रेडर्स प्रा.लि.<span class="tag m">▾</span></div></div>
+    <div class="field"><div class="lab" style="font-family:Mukta">बीजक मिति</div><div class="inp" style="border-color:var(--primary);font-family:Mukta">२०८३-०५-३१<span class="tag" style="color:var(--primaryDark);font-family:Mukta">बि.सं.</span></div></div>
+    <div class="cal">
+      <div class="ch"><span class="ar">‹</span><span class="mo" style="font-family:Mukta">भदौ २०८३</span><span class="ar">›</span></div>
+      <div class="cg" style="font-family:Mukta">
+        <span class="h">आइ</span><span class="h">सो</span><span class="h">मं</span><span class="h">बु</span><span class="h">बि</span><span class="h">शु</span><span class="h">श</span>
+        <span class="off">३१</span><span>१</span><span>२</span><span>३</span><span>४</span><span>५</span><span>६</span>
+        <span>७</span><span>८</span><span>९</span><span>१०</span><span>११</span><span>१२</span><span>१३</span>
+        <span>१४</span><span>१५</span><span>१६</span><span>१७</span><span>१८</span><span>१९</span><span>२०</span>
+        <span>२१</span><span>२२</span><span>२३</span><span>२४</span><span>२५</span><span>२६</span><span>२७</span>
+        <span>२८</span><span>२९</span><span>३०</span><span class="sel">३१</span><span class="off">१</span><span class="off">२</span><span class="off">३</span>
+      </div>
+      <div class="cf"><span style="font-family:Mukta">ई.सं. मिति</span><b>2026-09-16</b></div>
+    </div>
+    <div class="tot" style="font-family:Mukta">
+      <div class="tr"><span>जम्मा</span><b>२,२६,७२५.००</b></div>
+      <div class="tr"><span>छुट २%</span><b>−४,५३४.५०</b></div>
+      <div class="tr gr"><span>कुल रकम</span><b>रु २,२२,१९०.५०</b></div>
+    </div>
+    <div class="cta" style="font-family:Mukta">बीजक सुरक्षित गर्नुहोस्</div>
+    <div style="margin:16px 32px 34px;font-size:17px;color:var(--muted);text-align:center;font-family:Mukta">४,५००+ शब्द दुवै भाषामा अनुवादित</div>
+  </div></div>
+</div>
+
+<!-- ══════════ 5 — REPORTS ══════════ -->
+<div class="shot" id="s5">
+  <div class="cap">
+    <h2>Thirteen reports,<br><em>on the phone.</em></h2>
+    <p>Trial balance, P&amp;L, day book and ageing — in BS or AD.</p>
+  </div>
+  <div class="stage"><div class="dev">
+    <div class="sbar"><span>9:41</span><span class="r">▮▮▮ ⌁ 100%</span></div>
+    <div class="abar"><span class="ic">←</span><span class="ti">Reports</span><span class="pill">FY 2083/84</span></div>
+    <div class="search"><span>🔍</span><span>Search reports…</span></div>
+    <div class="rep">
+      <div class="i"><span class="ic">⚖️</span><span><div class="n">Trial Balance</div><div class="s">All ledger accounts, Dr and Cr</div></span><span class="ch">›</span></div>
+      <div class="i"><span class="ic">📈</span><span><div class="n">Profit &amp; Loss</div><div class="s">Income and expenses for the period</div></span><span class="ch">›</span></div>
+      <div class="i"><span class="ic">🏛️</span><span><div class="n">Balance Sheet</div><div class="s">Assets, liabilities and equity</div></span><span class="ch">›</span></div>
+      <div class="i"><span class="ic">🧾</span><span><div class="n">Sales Register</div><div class="s">Every sale in the period</div></span><span class="ch">›</span></div>
+      <div class="i"><span class="ic">📒</span><span><div class="n">Day Book</div><div class="s">Every voucher, day by day</div></span><span class="ch">›</span></div>
+      <div class="i"><span class="ic">⏳</span><span><div class="n">Customer Ageing</div><div class="s">30 / 60 / 90+ day buckets</div></span><span class="ch">›</span></div>
+      <div class="i"><span class="ic">📦</span><span><div class="n">Inventory Summary</div><div class="s">Stock on hand and value</div></span><span class="ch">›</span></div>
+      <div class="i"><span class="ic">⚠️</span><span><div class="n">Low Stock</div><div class="s">Items below reorder level</div></span><span class="ch">›</span></div>
+    </div>
+    <div class="tabs" style="margin-top:auto">
+      <div><span class="e">🏠</span>Home</div><div><span class="e">📊</span>Dashboard</div>
+      <div class="fab">＋</div><div><span class="e">📦</span>Items</div><div class="on"><span class="e">☰</span>Menu</div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ══════════ 6 — OFFLINE ══════════ -->
+<div class="shot" id="s6">
+  <div class="cap">
+    <h2>Works where the <em>signal doesn't.</em></h2>
+    <p>Keep billing offline. Changes sync themselves when you're back.</p>
+  </div>
+  <div class="stage"><div class="dev">
+    <div class="sbar"><span>9:41</span><span class="r">▮▮▯ ⌁ 68%</span></div>
+    <div class="abar"><span class="ic">←</span><span class="ti">Offline data</span><span class="ic">⟳</span></div>
+    <div class="ob"><span class="dt"></span><span class="tx">You're offline. 3 changes are queued and will send automatically.</span></div>
+    <div class="prog">
+      <div class="pl"><span>Company data downloaded</span><span>19 / 26</span></div>
+      <div class="pb"><i></i></div>
+      <div class="ps">Last full sync 2083-05-31 · 09:12</div>
+    </div>
+    <div class="sech"><span class="t">Cached records</span><span class="a">Refresh</span></div>
+    <div class="rows">
+      <div class="row"><span class="av bgP">📦</span><span class="mid"><span class="nm">Items</span><span class="sb">Synced 12 min ago</span></span><span class="amt"><div class="a1">1,284</div></span></div>
+      <div class="row"><span class="av bgG">👥</span><span class="mid"><span class="nm">Parties</span><span class="sb">Synced 12 min ago</span></span><span class="amt"><div class="a1">412</div></span></div>
+      <div class="row"><span class="av bgW">🧾</span><span class="mid"><span class="nm">Sales invoices</span><span class="sb">Synced 12 min ago</span></span><span class="amt"><div class="a1">3,907</div></span></div>
+      <div class="row"><span class="av bgP">🏬</span><span class="mid"><span class="nm">Warehouses &amp; stock</span><span class="sb">Synced 12 min ago</span></span><span class="amt"><div class="a1">6</div></span></div>
+    </div>
+    <div class="sech"><span class="t">Queued changes</span><span class="a">3</span></div>
+    <div class="rows">
+      <div class="row"><span class="av bgW">↑</span><span class="mid"><span class="nm">New sale — Cash sale</span><span class="sb">Created offline · 09:47</span></span><span class="amt"><div class="a2 w">Pending</div></span></div>
+      <div class="row"><span class="av bgW">↑</span><span class="mid"><span class="nm">Payment in — Himal Traders</span><span class="sb">Created offline · 10:02</span></span><span class="amt"><div class="a2 w">Pending</div></span></div>
+    </div>
+    <div class="cta">Send queued changes</div>
+    <div style="margin:16px 32px 34px;font-size:17px;color:var(--muted);text-align:center">26 record types available offline</div>
+  </div></div>
+</div>
+
+</body></html>

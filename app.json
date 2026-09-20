@@ -1,17 +1,31 @@
 {
   "expo": {
-    "name": "suva-erp-mobile",
+    "name": "SUVA ERP",
     "slug": "suva-erp-mobile",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "suvaerp",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.suvacorp.suvaerp",
+      "buildNumber": "3",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Use Face ID to authenticate and unlock SUVA ERP securely.",
+        "NSCameraUsageDescription": "Allow SUVA ERP to use your camera to scan product barcodes."
+      }
     },
     "android": {
+      "package": "com.suvacorp.suvaerp",
+      "versionCode":4 ,
+      "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "CAMERA"
+      ],
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#2F2F2F",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -19,6 +33,48 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-router",
+      [
+        "expo-status-bar",
+        {
+          "style": "dark"
+        }
+      ],
+      "expo-splash-screen",
+      "expo-dev-client",
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics",
+      "@react-native-google-signin/google-signin",
+      "expo-sharing",
+      [
+        "expo-image-picker",
+        {
+          "microphonePermission": false
+        }
+      ],
+      "expo-notifications",
+      "expo-sqlite",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Use Face ID to authenticate and unlock SUVA ERP securely."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow SUVA ERP to use your camera to scan product barcodes."
+        }
+      ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "59813461-2aa2-4865-b5ff-0b3425caa8c3"
+      }
     }
   }
 }
